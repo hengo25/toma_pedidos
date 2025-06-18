@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block titulo %}Formulario Pedido{% endblock %}
+{% block encabezado %}Formulario de Pedido{% endblock %}
+{% block contenido %}
+<form action="{{ url_for('toma_pedidos') }}" method="post">
+    <div>
+        <label>Cliente:</label>
+        <select name="cliente" required>
+            {% for c in clientes %}
+            <option value="" disabled selected>Selecciona Cliente</option>
+            <option value="{{ c['id'] }}">{{ c['nombre'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div id="productos-container">
+        <div class="producto-item">
+            <label>Producto:</label>
+            <select name="producto" required>
+                 <option value="" disabled selected>Selecciona Producto</option>
+                {% for p in productos %}
+                <option value="{{ p['id'] }}">{{ p['nombre'] }}</option>
+                {% endfor %}
+            </select>
+            <label>Cantidad:</label>
+            <input type="number" name="cantidad" min="1" required>
+        </div>
+    </div>
+    <button type="button" onclick="agregarProducto()">+ Agregar Producto</button>
+    <div>
+        <label>Observaciones:</label>
+        <textarea name="observaciones" rows="3"></textarea>
+    </div>
+    <button type="submit">Enviar Pedido</button>
+</form>
+
+<script>
+function agregarProducto() {
+    const container = document.getElementById('productos-container');
+    const item = document.querySelector('.producto-item').cloneNode(true);
+    container.appendChild(item);
+}
+</script>
+
+<a href="{{ url_for('index') }}"><button>&larr; Volver al Panel</button></a>
+{% endblock %}

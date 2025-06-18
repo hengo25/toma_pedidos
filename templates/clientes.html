@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block titulo %}Clientes{% endblock %}
+{% block contenido %}
+<a href="{{ url_for('index') }}" class="btn btn-link mb-3">← Volver</a>
+<h3>Agregar Cliente</h3>
+<form action="{{ url_for('agregar_cliente') }}" method="post" class="row g-2 align-items-end">
+  <div class="col"><input type="text" name="nombre" class="form-control" placeholder="Nombre" required></div>
+  <div class="col-auto"><button class="btn btn-success">Agregar</button></div>
+</form>
+<hr>
+<h3>Listado de Clientes</h3>
+<ul class="list-group">
+  {% for c in clientes %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ c.nombre }}
+      <form action="{{ url_for('eliminar_cliente', id=c.id) }}" method="post">
+        <button class="btn btn-sm btn-danger">Eliminar</button>
+      </form>
+    </li>
+  {% endfor %}
+  {% if clientes|length == 0 %}
+    <li class="list-group-item">No hay clientes todavía.</li>
+  {% endif %}
+</ul>
+{% endblock %}

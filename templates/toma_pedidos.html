@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block titulo %}Tomar Pedido{% endblock %}
+{% block contenido %}
+<a href="{{ url_for('index') }}" class="btn btn-link mb-3">← Volver</a>
+<form method="POST">
+  <div class="mb-3">
+    <label>Cliente:</label>
+    <select name="cliente" class="form-select" required>
+      <option disabled selected>Selecciona cliente</option>
+      {% for c in clientes %}
+        <option value="{{ c.id }}">{{ c.nombre }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div id="productos">
+    <div class="row g-2 mb-3 producto-item">
+      <div class="col-5">
+        <select name="producto[]" class="form-select" required>
+          <option disabled selected>Producto</option>
+          {% for p in productos %}
+            <option value="{{ p.id }}">{{ p.nombre }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-2">
+        <input name="cantidad[]" type="number" min="1" class="form-control" value="1" required>
+      </div>
+      <div class="col-3">
+        <select name="precio[]" class="form-select" required>
+          <option value="precio1">Precio 1</option>
+          <option value="precio2">Precio 2</option>
+        </select>
+      </div>
+      <div class="col-2">
+        <button type="button" class="btn btn-danger" onclick="this.closest('.producto-item').remove()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn btn-outline-secondary mb-3" onclick="agregarProducto()">+ Agregar producto</button>
+
+  <div class="mb-3">
+    <label>Observaciones:</label>
+    <textarea name="observaciones" class="form-control"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Generar Pedido</button>
+</form>
+
+{% if pedido %}
+<hr>
+<h3>Resumen del Pedido</h3>
+<p><strong>Cliente:</strong> {{ cliente }}</p>
+<p><strong>Fecha:</strong> {{ fecha }}</p>
+<p><strong>Observaciones:</strong> {{ observaciones }}</p>
+<table class="table table-bordered">
+  <thead><tr><th>Producto</th><th>Cantidad</th><th>Precio</th><th>Subtotal</th></tr></thead>
+  <tbody>
+    {% for i in pedido %}
+      <tr>
+        <td>{{ i.producto }}</td><td>{{ i.cantidad }}</td><td>{{ "{:.2f}".format(i.precio) }}</td><td>{{ "{:.2f}".format(i.subtotal) }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+  <tfoot>
+    <tr><th colspan="3">Total</th><th>{{ "{:.2f}".format(total) }}</th></tr>
+  </tfoot>
+</table>
+{% if mostrar_pdf %}
+  <a href="{{ url_for('descarga_pedido') }}" class="btn btn-success">📄 Descargar PDF</a>
+{% endif %}
+{% endif %}
+
+<script>
+function agregarProducto() {
+  const cont = document.getElementById('productos');
+  const clon = cont.querySelector('.producto-item').cloneNode(true);
+  clon.querySelectorAll('select,input').forEach(el => {
+    if (el.tagName === 'SELECT') el.selectedIndex = 0;
+    if (el.tagName === 'INPUT') el.value = 1;
+  });
+  cont.appendChild(clon);
+}
+</script>
+{% endblock %}

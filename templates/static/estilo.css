@@ -1,0 +1,153 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  padding: 1rem;
+}
+
+header {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+}
+
+/* Botones */
+.btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.6rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+
+.link-back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #2980b9;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Panel de botones */
+.botones-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.botones-panel .btn {
+  min-width: 200px;
+  text-align: center;
+}
+
+/* Formularios */
+form {
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.input, .select, .textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.textarea {
+  resize: vertical;
+}
+
+/* Tablas */
+.table-container {
+  overflow-x: auto;
+  margin-top: 1rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 0.6rem;
+  text-align: left;
+}
+
+.table th {
+  background-color: #ecf0f1;
+  font-weight: bold;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Cartas */
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* Elementos dinámicos */
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  border: 1px dashed #ccc;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #fdfefe;
+  position: relative;
+}
+
+.remove-item {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.remove-item:hover {
+  background-color: #c0392b;
+}
+
+/* Resumen del pedido */
+.resumen {
+  border-top: 2px solid #3498db;
+}
+
+.resumen h2 {
+  margin-bottom: 1rem;
+}

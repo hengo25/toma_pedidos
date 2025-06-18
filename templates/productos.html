@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block titulo %}Productos{% endblock %}
+{% block contenido %}
+<a href="{{ url_for('index') }}" class="btn btn-link mb-3">← Volver</a>
+<h3>Agregar Producto</h3>
+<form action="{{ url_for('agregar_producto') }}" method="post" class="row g-2 align-items-end">
+  <div class="col"><input name="nombre" class="form-control" placeholder="Nombre" required></div>
+  <div class="col"><input name="precio1" type="number" step="0.01" class="form-control" placeholder="Precio 1" required></div>
+  <div class="col"><input name="precio2" type="number" step="0.01" class="form-control" placeholder="Precio 2" required></div>
+  <div class="col-auto"><button class="btn btn-success">Agregar</button></div>
+</form>
+<hr>
+<h3>Listado de Productos</h3>
+<ul class="list-group">
+  {% for p in productos %}
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      {{ p.nombre }} — {{ p.precio1 }} / {{ p.precio2 }}
+      <form action="{{ url_for('eliminar_producto', id=p.id) }}" method="post">
+        <button class="btn btn-sm btn-danger">Eliminar</button>
+      </form>
+    </li>
+  {% endfor %}
+  {% if productos|length == 0 %}
+    <li class="list-group-item">No hay productos todavía.</li>
+  {% endif %}
+</ul>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block titulo %}Inicio{% endblock %}
+{% block contenido %}
+<div class="text-center">
+  <h2>Bienvenido 👋</h2>
+  <a href="{{ url_for('ver_clientes') }}" class="btn btn-secondary m-2">Clientes</a>
+  <a href="{{ url_for('ver_productos') }}" class="btn btn-secondary m-2">Productos</a>
+  <a href="{{ url_for('toma_pedidos') }}" class="btn btn-primary m-2">Tomar Pedido</a>
+</div>
+{% endblock %}
