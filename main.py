@@ -1,9 +1,10 @@
-from app import app as application # importa tu aplicación web
-from api import server as application  # importa tu API REST
+from app import app
+from api import server
 
-# ⚡ Combinar: montar la API dentro de la app principal
+# Montar la API dentro de la app principal
 app.wsgi_app = server.wsgi_app
 
-# 👉 Este será el objeto que Gunicorn usará
+# Objeto que Gunicorn usará
 application = app
+
 
