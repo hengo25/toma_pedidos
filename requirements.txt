@@ -1,4 +1,5 @@
-Flask
-reportlab
+flask
+flask-restful
 gunicorn
-fpdf
+firebase-admin
+reportlab
