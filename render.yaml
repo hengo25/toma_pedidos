@@ -5,7 +5,7 @@ services:
     plan: free
     runtime: python-3.11
     buildCommand: "pip install --upgrade pip && pip install -r requirements.txt"
-    startCommand: "gunicorn app:app"
+    startCommand: "gunicorn main:application"
     envVars:
       - key: GOOGLE_APPLICATION_CREDENTIALS_JSON
         sync: false
