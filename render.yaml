@@ -4,7 +4,11 @@ services:
     env: python
     plan: free
     runtime: python-3.11
-    buildCommand: "pip install --upgrade pip && pip install gunicorn && pip install -r requirements.txt"
+    buildCommand: |
+      echo "⚡ Instalando dependencias con pip (no Poetry)" && \
+      pip install --upgrade pip && \
+      pip install gunicorn && \
+      pip install -r requirements.txt
     startCommand: "gunicorn main:application"
     envVars:
       - key: GOOGLE_APPLICATION_CREDENTIALS_JSON
